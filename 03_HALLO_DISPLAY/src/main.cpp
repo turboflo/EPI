@@ -20,7 +20,7 @@ void setup()
   Serial.begin(115200);
   dht.begin();
   display.init();
-  display.setFont(ArialMT_Plain_16);
+  display.setFont(ArialMT_Plain_10);
 }
 
 void loop()
@@ -43,7 +43,7 @@ void loop()
 
   display.clear();
   display.drawString(0, 0, "Wohnzimmer");
-  display.drawString(0, 10, "Feuchtigkeit : " + String(h, 2) + " %");
-  display.drawString(0, 20, "Temperatur : " + String(t, 2) + "°C");
+  display.drawString(0, 12, "Feuchtigkeit : " + String(h, 2) + " %");
+  display.drawString(0, 22, "Temperatur : " + String(t, 2) + "°C");
   display.display();
 }
