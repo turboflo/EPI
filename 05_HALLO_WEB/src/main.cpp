@@ -94,21 +94,25 @@ void setup()
 
 void loop()
 {
-  h = dht.readHumidity();
-  t = dht.readTemperature();
-
-  if (isnan(h) || isnan(t))
-  {
-    Serial.println(F("Fehler beim Abfragen der Werte vom DHT Sensor!"));
-    return;
-  }
-
-  display.clear();
-  display.drawString(0, 0, "Wohnzimmer");
-  display.drawString(0, 12, "Feuchtigkeit : " + String(h, 2) + " %");
-  display.drawString(0, 22, "Temperatur : " + String(t, 2) + "°C");
-  display.drawString(0, 42, "IP: " + WiFi.localIP().toString());
-  display.display();
-
   server.handleClient();
+
+  if (millis() % 2000 == 0)
+  {
+
+    h = dht.readHumidity();
+    t = dht.readTemperature();
+
+    if (isnan(h) || isnan(t))
+    {
+      Serial.println(F("Fehler beim Abfragen der Werte vom DHT Sensor!"));
+      return;
+    }
+
+    display.clear();
+    display.drawString(0, 0, "Wohnzimmer");
+    display.drawString(0, 12, "Feuchtigkeit : " + String(h, 2) + " %");
+    display.drawString(0, 22, "Temperatur : " + String(t, 2) + "°C");
+    display.drawString(0, 42, "IP: " + WiFi.localIP().toString());
+    display.display();
+  }
 }
